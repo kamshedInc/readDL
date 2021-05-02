@@ -3,9 +3,9 @@ module.exports = async function (context, req) {
 
     const fetch = require('node-fetch')
     const controller = new AbortController()
-    const url = process.env.READAPI_READ
-    const keyname = process.env.READAPI_KEY_NAME
-    const key = process.env.READAPI_KEY_VALUE
+    const url = System.Environment.GetVairable("READAPI_READ", EnvironmentVariableTarget.Process)
+    const keyname = System.Environment.GetVairable("READAPI_KEY_NAME", EnvironmentVariableTarget.Process)
+    const key = System.Environment.GetVairable("READAPI_KEY_VALUE", EnvironmentVariableTarget.Process) 
     
 
     // payload
@@ -62,10 +62,4 @@ module.exports = async function (context, req) {
     .catch(err => console.log(err))
 
     context.res = { body: data }
-}
-
-
-
-export function readLicense(blob,res) {
-    
 }
